@@ -2,7 +2,7 @@
 
 from time import sleep
 
-FPS=8
+FPS=8.0
 BUFFER=100*'\n'
 ANIMS = ["walk", "wave", "kupers"]
 ANCHORCHARS = ('*','^','A') # (fillerchar, anchor, new anchor)
@@ -26,8 +26,8 @@ class Animation():
                     NewFrame.anchor2 = a2 if ( a2 >= 0 ) else a1
                     # check last char for frame count
                     n = line.strip()[-1]
-                    if n.isnumeric():
-                        NewFrame.fps /= int(n)
+                    if n.isnumeric() and int(n) != 0:
+                        NewFrame.fps = NewFrame.fps/int(n)
 
                     self.frames.append(NewFrame)
                     NewFrame = Frame()
